@@ -1,0 +1,128 @@
+<template>
+    <lightning-card title="Custom Data table in Lightning Web Components">
+        <div class="slds-var-m-around_medium">
+            <lightning-layout
+                vertical-align="end"
+                class="slds-var-m-bottom_small"
+            >
+                <lightning-layout-item>
+                    <lightning-input
+                        type="search"
+                        onchange={handleKeyChange}
+                        label="Search"
+                        value={searchKey}
+                    ></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-var-p-left_xx-small">
+                    <lightning-button
+                        label="Search"
+                        onclick={handleSearch}
+                    ></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <span></span>
+            </div>
+        </div><br/>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate">
+                        <lightning-input onchange={allSelected} type="checkbox"></lightning-input>
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Name" onclick={sort} >
+                    <div class="slds-truncate" title="Name">Account Name</div>
+                </a>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Account Type" onclick={sort}>
+                    <div class="slds-truncate" title="Account Type">Type</div>
+                    </a>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Industry" onclick={sort}>
+                    <div class="slds-truncate" title="Industry">Industry</div>
+                    </a>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Priority" onclick={sort}>
+                    <div class="slds-truncate" title="Priority">Priority</div>
+                    </a>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Owner Name" onclick={sort}>
+                    <div class="slds-truncate" title="Owner">Owner Name</div>
+                    </a>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Created By" onclick={sort}>
+                    <div class="slds-truncate" title="Created By">Created By</div>
+                    </a>
+                </th>
+                <th class="" scope="col">
+                    <a data-id="Created Date" onclick={sort}>
+                    <div class="slds-truncate" title="Created Date">Created Date</div>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={accounts} for:item="account">
+                <tr key={account.Id}>
+                    <th scope="col">
+                        <div>
+                            <lightning-input type="checkbox" value={account.Name} data-id={account.Id}></lightning-input>
+                        </div>
+                    </th>
+                    <th scope="col">
+                    <lightning-layout
+                key={account.Id}
+                class="slds-var-m-vertical_x-small">
+                <lightning-layout-item flexibility="grow">
+                    <lightning-button key={account.Id} variant="base" label={account.Name} title={account.Name} onclick={navigateToAccount} value={account.Id}></lightning-button>
+                    </lightning-layout-item>
+                    <lightning-layout-item>
+                        <lightning-button-icon
+                            icon-name="utility:delete"
+                            onclick={deleteAccount}
+                            data-recordid={account.Id}
+                        ></lightning-button-icon>
+                    </lightning-layout-item>
+                    </lightning-layout>
+                    </th>
+                    <th scope="col">
+                        <div>{account.Type}</div>
+                    </th>
+                    
+                    <th scope="col">
+                        <div>{account.Industry}</div>
+                    </th>
+                    <th scope="col">
+                        <div>{account.CustomerPriority__c}</div>
+                    </th>
+                    <th scope="col">
+                        <div>{account.Owner.Name}</div>
+                    </th>
+                    <th scope="col">
+                        <div>{account.CreatedBy.Name}</div>
+                    </th>
+                    <th scope="col">
+                    <div><lightning-formatted-date-time value={account.CreatedDate}></lightning-formatted-date-time></div>
+                    </th>
+                </tr>
+            </template>
+        </tbody> 
+    </table>
+    <div class="slds-m-around_medium">
+        <p class="slds-m-vertical_medium content">
+                 Displaying {startingRecord} to {endingRecord} of {totalRecountCount} records.
+                 Page {page} of {totalPage}. </p>
+        <c-pagination onprevious={previousHandler} onnext={nextHandler}></c-pagination>
+    </div>
+</lightning-card>
+</template>
