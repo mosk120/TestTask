@@ -1,8 +1,10 @@
 public with sharing class ContactController {
 
     @AuraEnabled(cacheable=true)
-    public static List<Account> getAccountList() {
-        return [SELECT Id, Name, Type, Industry, CustomerPriority__c, OwnerId, Owner.Name, CreatedById, CreatedBy.Name, CreatedDate FROM Account];
+    public static List<Account> getAccountList(Integer offset, Integer l) {
+        return [SELECT Id, Name, Type, Industry, CustomerPriority__c, OwnerId, Owner.Name, CreatedById, CreatedBy.Name, CreatedDate 
+        FROM Account
+        LIMIT :l OFFSET :offset];
     }
 
     @AuraEnabled(cacheable=true)
@@ -15,7 +17,5 @@ public with sharing class ContactController {
             WITH SECURITY_ENFORCED
             LIMIT 10
         ];
-    }
-   
-    
+    }   
 }

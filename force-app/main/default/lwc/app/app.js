@@ -6,28 +6,47 @@ import { deleteRecord } from 'lightning/uiRecordApi';
 import getAccountList from '@salesforce/apex/ContactController.getAccountList';
 import findContacts from '@salesforce/apex/ContactController.findAccounts';
 
-
 export default class ApexImperativeMethod extends NavigationMixin(LightningElement) {
-    // @track data;
+    // track data;
     @track accounts;
     @track error;
     @track selectedCons;
+    @track tableLoadingState = false;
+    @track offset=0;
+    @track Prevoffset=0;
+    @track limit = 10;
     searchKey = '';
     wiredAccountsResult;
-    @wire(getAccountList)
-
+    @wire(getAccountList, { offset: '$offset', l : '$limit' })
     accounts(result) {
+        this.tableLoadingState = false;
         this.wiredAccountsResult = result;
         if (result.data) {
             this.accounts = result.data;
             this.error = undefined;
-
+            if(this.accounts.length == 0) {
+                this.offset= this.Prevoffset;
+            }
         } else if (result.error) {
             this.error = result.error;
             this.accounts = undefined;
         }
     }
 
+
+    handlePrev (_event) {     
+        if(this.offset - this.limit >=0) {
+            this.tableLoadingState = true;
+            this.Prevoffset=this.offset;
+            this.offset = this.offset - this.limit;
+        }
+    }
+    handleNext (_event) {
+        this.tableLoadingState = true;
+        this.Prevoffset=this.offset;
+        this.offset = this.offset + this.limit;
+    }
+    
 
     allSelected(event) {
         let selectedRows = this.template.querySelectorAll('lightning-input');
