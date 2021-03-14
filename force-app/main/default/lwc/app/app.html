@@ -20,6 +20,15 @@
                     ></lightning-button>
                 </lightning-layout-item>
             </lightning-layout>
+            <div class="slds-clearfix">
+                <lightning-button 
+                variant="brand" 
+                label="Create Account" 
+                title="Create Account" 
+                onclick={showModalPopup} 
+                class="slds-float_left">
+            </lightning-button>
+            </div>
         </div>
         <div class="slds-grid slds-gutters">
             <div class="slds-col">
@@ -98,7 +107,6 @@
                     <th scope="col">
                         <div>{account.Type}</div>
                     </th>
-                    
                     <th scope="col">
                         <div>{account.Industry}</div>
                     </th>
@@ -119,5 +127,19 @@
         </tbody> 
     </table>
     <c-pagination onprevious={handlePrev} onnext={handleNext}></c-pagination>
+    <c-modal-window 
+        show-modal={showModal} 
+        show-positive={showPositiveButton}
+        positive-button-label={positiveButtonLabel} 
+        show-negative={showNegativeButton}
+        onpositive={closeModal}
+        onclose={closeModal}>
+        <div slot="header">
+            <h2 slot="header" id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Account Modal Window</h2>
+        </div>
+        <div slot="body">
+            <c-create-account-page></c-create-account-page>
+        </div>
+    </c-modal-window>
 </lightning-card>
 </template>

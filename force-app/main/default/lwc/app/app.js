@@ -15,6 +15,10 @@ export default class ApexImperativeMethod extends NavigationMixin(LightningEleme
     @track offset=0;
     @track Prevoffset=0;
     @track limit = 10;
+    @track showModal = false;
+    @track showNegativeButton;
+    @track showPositiveButton = true;
+    @track positiveButtonLabel = 'Close';
     searchKey = '';
     wiredAccountsResult;
     @wire(getAccountList, { offset: '$offset', l : '$limit' })
@@ -123,6 +127,14 @@ export default class ApexImperativeMethod extends NavigationMixin(LightningEleme
                 this.accounts = undefined;
             });
     }
+
+    closeModal() {
+        this.showModal = false;
+      }
+    
+      showModalPopup() {
+        this.showModal = true;
+      }
     
 
     

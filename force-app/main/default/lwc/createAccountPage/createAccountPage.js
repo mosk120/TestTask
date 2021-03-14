@@ -1,17 +1,33 @@
-import { LightningElement } from 'lwc';
-import ACCOUNT_OBJECT from '@salesforce/schema/Account';
-import NAME_FIELD from '@salesforce/schema/Account.Name';
-import WEBSITE_FIELD from '@salesforce/schema/Account.Website';
+import { LightningElement, api } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-/**
- * Creates Account records.
- */
-export default class AccountCreator extends LightningElement {
-
-    accountObject = ACCOUNT_OBJECT;
-    myFields = [NAME_FIELD, WEBSITE_FIELD];
-
-    handleAccountCreated(){
-        // Run code when account is created.
+export default class CreateAccountPage extends LightningElement {
+   accountId;
+   handleSuccess(event) {
+       const toastEvent = new ShowToastEvent({
+        title: "Account created",
+        message: "Record ID: " + event.detail.id,
+        variant: "success"
+    });
+    this.dispatchEvent(toastEvent);
+    const inputFields = this.template.querySelectorAll(
+        'lightning-input-field'
+    );
+    if (inputFields) {
+        inputFields.forEach(field => {
+            field.reset();
+        });
     }
+   }
+
+   handleReset(event) {
+    const inputFields = this.template.querySelectorAll(
+        'lightning-input-field'
+    );
+    if (inputFields) {
+        inputFields.forEach(field => {
+            field.reset();
+        });
+    }
+ }
 }
