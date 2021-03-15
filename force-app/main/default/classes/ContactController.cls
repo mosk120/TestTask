@@ -4,6 +4,7 @@ public with sharing class ContactController {
     public static List<Account> getAccountList(Integer offset, Integer l) {
         return [SELECT Id, Name, Type, Industry, CustomerPriority__c, OwnerId, Owner.Name, CreatedById, CreatedBy.Name, CreatedDate 
         FROM Account
+        WITH SECURITY_ENFORCED
         LIMIT :l OFFSET :offset];
     }
 

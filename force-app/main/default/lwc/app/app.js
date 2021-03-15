@@ -10,7 +10,6 @@ export default class ApexImperativeMethod extends NavigationMixin(LightningEleme
     // track data;
     @track accounts;
     @track error;
-    @track selectedCons;
     @track tableLoadingState = false;
     @track offset=0;
     @track Prevoffset=0;
