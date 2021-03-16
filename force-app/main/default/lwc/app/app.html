@@ -85,7 +85,10 @@
                 <tr key={account.Id}>
                     <th scope="col">
                         <div>
-                            <lightning-input type="checkbox" value={account.Name} data-id={account.Id}></lightning-input>
+                            <lightning-input type="checkbox" 
+                            value={account.Name} 
+                            data-id={account.Id}>
+                            </lightning-input>
                         </div>
                     </th>
                     <th scope="col">
@@ -93,7 +96,13 @@
                 key={account.Id}
                 class="slds-var-m-vertical_x-small">
                 <lightning-layout-item flexibility="grow">
-                    <lightning-button key={account.Id} variant="base" label={account.Name} title={account.Name} onclick={navigateToAccount} value={account.Id}></lightning-button>
+                    <lightning-button key={account.Id} 
+                    variant="base" 
+                    label={account.Name} 
+                    title={account.Name} 
+                    onclick={navigateToAccount} 
+                    value={account.Id}>
+                </lightning-button>
                     </lightning-layout-item>
                     <lightning-layout-item>
                         <lightning-button-icon
