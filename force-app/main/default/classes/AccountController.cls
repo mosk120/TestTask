@@ -1,7 +1,9 @@
 public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
-    public static List<Account> getAccounts(Integer offset, Integer cap, String field, String sortOrder) {
-        return Database.query('SELECT Id, Name, Type, Industry, CustomerPriority__c, OwnerId, Owner.Name, CreatedById, CreatedBy.Name, CreatedDate FROM Account ORDER BY '+field+' '+sortOrder+ ' LIMIT '+cap+' OFFSET '+offset);
+    public static List<Account> getAccounts( Integer offset, String field, String sortOrder ) {
+        String query = 'SELECT Id, Name, Type, Industry, CustomerPriority__c, OwnerId, Owner.Name, CreatedById, CreatedBy.Name, CreatedDate FROM Account';
+        query += ' ORDER BY '+ field +' '+ sortOrder + ' LIMIT 10 OFFSET '+ offset;
+        return Database.query( query );
     }
 
     @AuraEnabled(cacheable=true)

@@ -8,9 +8,9 @@ import searchAccounts from "@salesforce/apex/AccountController.searchAccounts";
 
 export default class App extends NavigationMixin(LightningElement) {
   @track accounts;
+  error;
   sortBy = "Name";
   sortDirection = "asc";
-  error;
   offset = 0;
   prevOffset = 0;
   limit = 10;
@@ -19,7 +19,6 @@ export default class App extends NavigationMixin(LightningElement) {
   wiredAccountsResult;
   @wire(getAccounts, {
     offset: "$offset",
-    cap: "$limit",
     field: "$sortBy",
     sortOrder: "$sortDirection"
   })
