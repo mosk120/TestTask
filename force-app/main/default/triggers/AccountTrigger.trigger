@@ -1,6 +1,5 @@
-trigger CreateCaseTrigger on Account (after insert) {
-    if (Trigger.isInsert) {
-        List<Case> CaseList = new List<Case>();
+trigger AccountTrigger on Account (after insert) {
+        List<Case> cases = new List<Case>();
         for (Account acct : Trigger.new) {
          Case c = new Case(Status = 'Working', Origin = 'New Contact', OwnerId = acct.OwnerId, AccountId = acct.Id);
              if (acct.Rating == 'Hot') {
@@ -10,10 +9,7 @@ trigger CreateCaseTrigger on Account (after insert) {
             } else if (acct.Rating == 'Cold') {
                 c.Priority = 'Low';
             }
-            CaseList.add(c);
-            if (CaseList.size() > 0) {
-            insert CaseList;
-            }
+            cases.add(c);
          }
-        }
+        insert cases;
 }
