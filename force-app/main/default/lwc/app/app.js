@@ -31,14 +31,14 @@ export default class App extends NavigationMixin(LightningElement) {
         this.offset = this.prevOffset;
       }
     } else if (result.error) {
-      this.showErrorToast();
+      this.showErrorToast(error);
     }
   }
 
-  showErrorToast() {
+  showErrorToast(msg) {
     const evt = new ShowToastEvent({
-      title: "Error deleting record",
-      message: "Error",
+      title: 'Error',
+      message: msg,
       variant: "error"
     });
     this.dispatchEvent(evt);
@@ -91,13 +91,13 @@ export default class App extends NavigationMixin(LightningElement) {
         );
         return refreshApex(this.wiredAccountsResult);
       })
-      .catch(() => {
-        this.showErrorToast();
+      .catch((error) => {
+        this.error = this.showErrorToast(error);
       });
   }
 
   handleKeyChange(event) {
-    this.searchKey = event.target.value;
+    this.searchKey = event.detail;
   }
 
   handleSearch() {
@@ -105,8 +105,8 @@ export default class App extends NavigationMixin(LightningElement) {
       .then((result) => {
         this.accounts = result;
       })
-      .catch(() => {
-        this.error = this.showErrorToast();
+      .catch((error) => {
+        this.error = this.showErrorToast(error);
       });
   }
 

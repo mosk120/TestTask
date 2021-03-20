@@ -14,6 +14,7 @@ public with sharing class AccountController {
             FROM Account
             WHERE Name LIKE :key
             WITH SECURITY_ENFORCED
+            ORDER BY Name
             LIMIT 10
         ];
     }   

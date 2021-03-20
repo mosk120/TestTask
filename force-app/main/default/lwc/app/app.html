@@ -1,22 +1,10 @@
 <template>
   <lightning-card title="Accounts Manager Table">
     <div class="slds-var-m-around_medium">
-      <lightning-layout vertical-align="end" class="slds-var-m-bottom_small">
-        <lightning-layout-item>
-          <lightning-input
-            type="search"
-            onchange={handleKeyChange}
-            label="Search"
-            value={searchKey}
-          ></lightning-input>
-        </lightning-layout-item>
-        <lightning-layout-item class="slds-var-p-left_xx-small">
-          <lightning-button
-            label="Search"
-            onclick={handleSearch}
-          ></lightning-button>
-        </lightning-layout-item>
-      </lightning-layout>
+      <c-search-bar
+        onsearch={handleSearch}
+        onchangevalue={handleKeyChange}
+      ></c-search-bar>
       <div class="slds-clearfix">
         <lightning-button
           variant="brand"
@@ -37,33 +25,33 @@
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
       <thead>
         <tr class="slds-line-height_reset">
-          <th class="" scope="col"></th>
-          <th class="" scope="col">
+          <th scope="col"></th>
+          <th scope="col">
             <a data-id="Name" onclick={sort}>
               <div class="slds-truncate" title="Name">Account Name</div>
             </a>
           </th>
-          <th class="" scope="col">
+          <th scope="col">
             <a data-id="Type" onclick={sort}>
               <div class="slds-truncate" title="Account Type">Type</div>
             </a>
           </th>
-          <th class="" scope="col">
+          <th scope="col">
             <a data-id="Industry" onclick={sort}>
               <div class="slds-truncate" title="Industry">Industry</div>
             </a>
           </th>
-          <th class="" scope="col">
+          <th scope="col">
             <a data-id="CustomerPriority__c" onclick={sort}>
               <div class="slds-truncate" title="Priority">Priority</div>
             </a>
           </th>
-          <th class="" scope="col">
+          <th scope="col">
             <a data-id="Owner.Name" onclick={sort}>
               <div class="slds-truncate" title="Owner">Owner Name</div>
             </a>
           </th>
-          <th class="" scope="col">
+          <th scope="col">
             <a data-id="CreatedById" onclick={sort}>
               <div class="slds-truncate" title="Created By">Created By</div>
             </a>

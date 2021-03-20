@@ -1,0 +1,18 @@
+<template>
+  <lightning-layout vertical-align="end" class="slds-var-m-bottom_small">
+    <lightning-layout-item>
+      <lightning-input
+        type="search"
+        onchange={changeHandler}
+        label="Search"
+        value={searchKey}
+      ></lightning-input>
+    </lightning-layout-item>
+    <lightning-layout-item class="slds-var-p-left_xx-small">
+      <lightning-button
+        label="Search"
+        onclick={searchHandler}
+      ></lightning-button>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>
