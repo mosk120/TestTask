@@ -38,9 +38,9 @@ export default class App extends NavigationMixin(LightningElement) {
   showErrorToast(msg) {
     const evt = new ShowToastEvent({
       title: 'Error',
-      message: msg,
+      message: msg.body.message,
       variant: "error"
-    });
+    }); 
     this.dispatchEvent(evt);
   }
 

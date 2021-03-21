@@ -23,7 +23,7 @@
     static void testGetAccounts() {
         List<Account> accs = new List<Account>();
         accs = AccountController.getAccounts(0, 'Name', 'asc');
-        System.assertEquals(10, accs.size(), 'Error');
+        System.assertEquals(10, accs.size(), 'Expected to get 10');
         
     }
 
@@ -31,7 +31,7 @@
     static void testSearchAccounts() {
         List<Account> account = new List<Account>();
         account = AccountController.searchAccounts('Test Account 20');
-        System.assertEquals(1, account.size(), 'Error');
+        System.assertEquals(1, account.size(), 'Expected to get 1');
         
     }
 

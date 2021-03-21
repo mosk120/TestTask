@@ -12,7 +12,7 @@ private class AccountTriggerTests {
             accts.add(acct);
         } else {
         Account acct = new Account(Name='Test Account ' + i, Rating = 'Cold');
-            accts.add(acct);   
+            accts.add(acct);
         }
         
     }
@@ -23,7 +23,7 @@ private class AccountTriggerTests {
     static void testAccountTriggerHighPriority() {
         List<Case> cases = new List<Case>();
         cases = [SELECT Id FROM Case WHERE Priority LIKE 'High'];
-        System.assertEquals(50, cases.size(), 'Error');
+        System.assertEquals(50, cases.size(), 'Expected to get 50');
         
     }
  
@@ -31,7 +31,7 @@ private class AccountTriggerTests {
     static void testAccountTriggerMediumPriority() {
         List<Case> cases = new List<Case>();
         cases = [SELECT Id FROM Case WHERE Priority LIKE 'Medium'];
-        System.assertEquals(50, cases.size(), 'Error');
+        System.assertEquals(50, cases.size(), 'Expected to get 50');
         
     }
         
@@ -39,7 +39,7 @@ private class AccountTriggerTests {
     static void testAccountTriggerLowPriority() {
         List<Case> cases = new List<Case>();
         cases = [SELECT Id FROM Case WHERE Priority LIKE 'Low'];
-        System.assertEquals(100, cases.size(), 'Error');
+        System.assertEquals(100, cases.size(), 'Expected to get 100');
         
     }
 }
