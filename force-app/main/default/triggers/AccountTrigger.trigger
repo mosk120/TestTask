@@ -11,7 +11,7 @@ trigger AccountTrigger on Account (after insert) {
         }
         cases.add(c);
     }
-    insert cases;
+        insert cases;
 }
 
         //private static void create method

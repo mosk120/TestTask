@@ -29,8 +29,50 @@
           class="slds-modal__content slds-p-around_medium"
           id="modal-content-id-1"
         >
-          <slot name="body"></slot>
+          <slot name="body">
+            <lightning-card title="Create Account" icon-name="standard:record">
+              <lightning-record-edit-form
+                object-api-name="Account"
+                onsuccess={handleSuccess}
+              >
+                <lightning-messages></lightning-messages>
+                <div class="slds-m-around_medium">
+                  <lightning-input-field
+                    field-name="Name"
+                  ></lightning-input-field>
+                  <lightning-input-field
+                    field-name="Phone"
+                  ></lightning-input-field>
+                  <lightning-input-field
+                    field-name="Type"
+                  ></lightning-input-field>
+                  <lightning-input-field
+                    field-name="Industry"
+                  ></lightning-input-field>
+                  <lightning-input-field
+                    field-name="Rating"
+                  ></lightning-input-field>
+                </div>
+              </lightning-record-edit-form>
+            </lightning-card>
+          </slot>
         </div>
+        <footer class="slds-modal__footer">
+          <div class="slds-float_right">
+            <lightning-button
+              variant="brand"
+              type="submit"
+              name="save"
+              label="Save"
+              onclick={handleSubmit}
+            ></lightning-button>
+            <lightning-button
+              class="slds-p-left_x-small"
+              label="Cancel"
+              onclick={handleReset}
+            ></lightning-button>
+          </div>
+        </footer>
       </div>
     </section>
     <div class="slds-backdrop slds-backdrop_open"></div>
