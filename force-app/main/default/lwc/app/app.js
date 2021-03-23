@@ -26,7 +26,6 @@ export default class App extends NavigationMixin(LightningElement) {
     this.wiredAccountsResult = result;
     if (result.data) {
       this.accounts = result.data;
-      //it doesn't let pagination to go over limit
       if (this.accounts.length == 0) {
         this.offset = this.prevOffset;
       }

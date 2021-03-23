@@ -14,9 +14,8 @@ private class AccountTriggerTests {
         Account acct = new Account(Name='Test Account ' + i, Rating = 'Cold');
             accts.add(acct);
         }
-        
     }
-        insert accts;
+    insert accts;
 }
 
     @isTest
@@ -24,7 +23,6 @@ private class AccountTriggerTests {
         List<Case> cases = new List<Case>();
         cases = [SELECT Id FROM Case WHERE Priority LIKE 'High'];
         System.assertEquals(50, cases.size(), 'Expected to get 50');
-        
     }
  
  	@isTest 
@@ -32,7 +30,6 @@ private class AccountTriggerTests {
         List<Case> cases = new List<Case>();
         cases = [SELECT Id FROM Case WHERE Priority LIKE 'Medium'];
         System.assertEquals(50, cases.size(), 'Expected to get 50');
-        
     }
         
     @isTest
@@ -40,6 +37,5 @@ private class AccountTriggerTests {
         List<Case> cases = new List<Case>();
         cases = [SELECT Id FROM Case WHERE Priority LIKE 'Low'];
         System.assertEquals(100, cases.size(), 'Expected to get 100');
-        
     }
 }
