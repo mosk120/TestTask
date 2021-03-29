@@ -1,5 +1,5 @@
 @isTest
-    private class AccountControllerTest {
+    private class Test_AccountController {
         @testSetup
         static void testSetup(){
         List<Account> accounts = new List<Account>();

@@ -1,5 +1,5 @@
 @isTest
-private class AccountTriggerTest {
+private class Test_AccountTriggerHandler {
     @testSetup
     static void testSetup(){
     List<Account> accounts = new List<Account>();
@@ -31,6 +31,7 @@ private class AccountTriggerTest {
         FROM Case 
         WHERE Priority 
         LIKE 'High'];
+        
         System.assertEquals(100, casesLow, 'Expected to get 100');
         System.assertEquals(50, casesMedium, 'Expected to get 50');
         System.assertEquals(50, casesHigh, 'Expected to get 50');
